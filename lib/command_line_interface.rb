@@ -4,14 +4,17 @@ require 'nokogiri'
 require 'colorize'
 
 class CommandLineInterface
+  # constant set to the link used in this lab.
   BASE_PATH = "https://learn-co-curriculum.github.io/student-scraper-test-page/"
 
+  # method used to initiate the CLI program.
   def run
     make_students
     add_attributes_to_students
     display_students
   end
 
+  # 
   def make_students
     students_array = Scraper.scrape_index_page(BASE_PATH + 'index.html')
     Student.create_from_collection(students_array)
