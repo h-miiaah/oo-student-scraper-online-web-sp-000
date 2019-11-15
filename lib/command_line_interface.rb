@@ -20,7 +20,7 @@ class CommandLineInterface
     Student.create_from_collection(students_array)
   end
 
-  #
+  # iterates over each student created, sets an attributs variable to the students info using the Scraper class scrape_profile_page method, then using the Student class add_student_attributes method it passes in the attributes variable and adds those attributes to each student.
   def add_attributes_to_students
     Student.all.each do |student|
       attributes = Scraper.scrape_profile_page(BASE_PATH + student.profile_url)
@@ -28,6 +28,7 @@ class CommandLineInterface
     end
   end
 
+  # using the Student class it iterates through each student and displays the students info.
   def display_students
     Student.all.each do |student|
       puts "#{student.name.upcase}".colorize(:blue)
