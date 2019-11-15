@@ -14,12 +14,13 @@ class CommandLineInterface
     display_students
   end
 
-  #
+  # creates a students_array using the Scraper class scrape_index_page method, then from the Student class creates new students using the create_from_collection method passing it the students_array.
   def make_students
     students_array = Scraper.scrape_index_page(BASE_PATH + 'index.html')
     Student.create_from_collection(students_array)
   end
 
+  # 
   def add_attributes_to_students
     Student.all.each do |student|
       attributes = Scraper.scrape_profile_page(BASE_PATH + student.profile_url)
